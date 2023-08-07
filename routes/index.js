@@ -4,21 +4,32 @@ const { requiresAuth } = require('express-openid-connect');
 const axios = require('axios');
 const { log } = require('console');
 
+// if authenticated, go to home page with search bar, else go to landing page
 router.get('/', function(req, res, next) {
   req.oidc.isAuthenticated() ? 
   res.redirect('home') :
   res.render('index');
 });
 
+// go to home page with search bar
 router.get('/home', requiresAuth(), (req, res) => {
   res.render('home');
 });
 
+// search discogs and display results
 router.post('/search-results', requiresAuth(), (req, res) => {
   axios({
     method: 'get',
-    url: `https://api.discogs.com//database/search?q={${req.body.searchTerm}}&country=US&type=all&key=${process.env.DISCOGS_CONSUMER_KEY}&secret=${process.env.DISCOGS_CONSUMER_SECRET}`,
-    headers: {'User-Agent': 'RecordCoasters/1.0'}
+    url: 'https://api.discogs.com/database/search',
+    headers: {'User-Agent': 'RecordCoasters/1.0'},
+    params: {
+      q: req.body.searchTerm,
+      country: 'US',
+      type: 'all',
+      format: 'vinyl',
+      key: process.env.DISCOGS_CONSUMER_KEY,
+      secret: process.env.DISCOGS_CONSUMER_SECRET
+    }
   })
   .then(function(response) {
     const results = response.data.results;
@@ -26,11 +37,41 @@ router.post('/search-results', requiresAuth(), (req, res) => {
   })
   .catch(function(error) {
     console.log(error);
-    res.send('Error searching Discogs');
-  })
+    res.send('Error searching Discogs 1');
+  });
 });
 
+// search discogs for specific release via resource_url
+router.post('/details', requiresAuth(), (req, res) => {
+  axios({
+    method: 'get',
+    url: req.body.resource_url,
+    headers: {'User-Agent': 'RecordCoasters/1.0'},
+    params: {
+      country: 'US',
+      type: 'all',
+      format: 'vinyl',
+      key: process.env.DISCOGS_CONSUMER_KEY,
+      secret: process.env.DISCOGS_CONSUMER_SECRET
+    }
+  })
+  .then(function(response) {
+    const result = response.data;
+    const resultObj = {
+      result: result,
+      title: req.body.title
+    }
+    res.render('details', resultObj);
+  })
+  .catch(function(error) {
+    console.log(error);
+    res.send('Error searching Discogs 2');
+  });
+});
+
+// save to shopify
 router.post('/save', requiresAuth(), (req, res) => {
+  // create product
   axios({
     method:'post',
     url: 'https://recordcoasters.myshopify.com/admin/api/2023-07/products.json',
@@ -51,8 +92,38 @@ router.post('/save', requiresAuth(), (req, res) => {
       }
     }
   })
+  // .then(function(response) {
+  //   // Connects an inventory item to a location by creating an inventory level at that location.
+  //   return axios({
+  //     method:'post',
+  //     url: 'https://recordcoasters.myshopify.com/admin/api/2023-07/inventory_levels/connect.json',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_API_ACCESS_TOKEN 
+  //     },
+  //     data: {
+  //       location_id: process.env.SHOPIFY_LOCATION_ID,
+  //       inventory_item_id: response.data.product.variants[0].inventory_item_id,
+  //     }
+  //   })
+  // })
+  // .then(function(response) {
+  //   // Sets the inventory level for an inventory item at a location
+    // return axios({
+    //   method:'post',
+    //   url: 'https://recordcoasters.myshopify.com/admin/api/2023-07/inventory_levels/set.json',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_API_ACCESS_TOKEN 
+    //   },
+    //   data: {
+    //     location_id: process.env.SHOPIFY_LOCATION_ID,
+    //     inventory_item_id: response.data.product.variants[0].inventory_item_id,
+    //     available : 1
+    //   }
+    // })
+  })
   .then(function(response) {
-    console.log(response);
     res.redirect('home');
   })
   .catch(function(error) {
@@ -62,30 +133,3 @@ router.post('/save', requiresAuth(), (req, res) => {
 });
 
 module.exports = router;
-
-/**
- * sample discogs response
- * 
- * {
-    country: 'US',
-    year: '2012',
-    format: [ 'Vinyl', 'LP', 'Album' ],
-    label: [ 'Community Records', 'Community Records' ],
-    type: 'release',
-    genre: [ 'Rock', 'Pop' ],
-    style: [ 'Punk', 'Indie Rock' ],
-    id: 11687894,
-    barcode: [ 'L-20683M-A-RE-1 CR-021', 'L-20683M-B RE-1 CR-021' ],
-    master_id: 1403581,
-    master_url: 'https://api.discogs.com/masters/1403581',
-    uri: '/Safety-Night-Lights/release/11687894',
-    catno: 'CR-021',
-    title: 'Safety (3) - Night Lights',
-    thumb: '',
-    cover_image: 'https://st.discogs.com/1b4089c0ffa746a52b5ab9f12cc3c7f0ccc9b926/images/spacer.gif',
-    resource_url: 'https://api.discogs.com/releases/11687894',
-    community: { want: 1, have: 13 },
-    format_quantity: 1,
-    formats: [ [Object] ]
-  }
- */

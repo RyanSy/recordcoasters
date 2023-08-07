@@ -1,0 +1,36 @@
+<div class="container">
+    <form action="/save" method="post">
+        {{#each this.result.images}}
+        <div class="input-group">
+            {{!-- <input type="radio" name='image' value="{{this.resource_url}}" style="background-image: url("{{this.resource_url}}");
+                height: 50px;
+                width: 50px;
+                display:inline-block;
+                adding: 0 0 0 0px;"
+            /> --}}
+            <input class="mr-2" type="radio" name="image" value="{{this.resource_url}}">
+            <img class="ml-2 mb-3" src="{{this.resource_url}}" alt="{{this.artists_sort}} {{this.title}}" height="150" width="150">
+        </div>
+        {{/each}}
+
+        <label for="">Item</label>
+        <div class="input-group form-outline w-50">
+            <input type="text" class="form-control mb-3" name="title" value="{{this.title}} Drink Coaster">
+        </div>
+
+        <label for="">Quantity</label>
+        <div class="input-group mb-3 form-outline w-25">
+            <input class="form-control" type="number" name="quantity" value="1">
+        </div>
+
+        <label for="">Price</label>
+        <div class="input-group mb-3 form-outline w-25">
+            <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+            </div>
+            <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="price">
+        </div>
+
+        <input type="submit" class="btn btn-success" value="Save to Shopify">
+    </form>
+</div>
