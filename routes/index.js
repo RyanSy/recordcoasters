@@ -122,7 +122,7 @@ router.post('/save', requiresAuth(), (req, res) => {
     //     available : 1
     //   }
     // })
-  })
+  // })
   .then(function(response) {
     res.redirect('home');
   })
