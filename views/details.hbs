@@ -1,13 +1,7 @@
-<div class="container">
+<div class="container mb-5">
     <form action="/save" method="post">
         {{#each this.result.images}}
         <div class="input-group">
-            {{!-- <input type="radio" name='image' value="{{this.resource_url}}" style="background-image: url("{{this.resource_url}}");
-                height: 50px;
-                width: 50px;
-                display:inline-block;
-                adding: 0 0 0 0px;"
-            /> --}}
             <input class="mr-2" type="radio" name="image" value="{{this.resource_url}}">
             <img class="ml-2 mb-3" src="{{this.resource_url}}" alt="{{this.artists_sort}} {{this.title}}" height="150" width="150">
         </div>

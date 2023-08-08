@@ -37,7 +37,7 @@ router.post('/search-results', requiresAuth(), (req, res) => {
   })
   .catch(function(error) {
     console.log(error);
-    res.send('Error searching Discogs 1');
+    res.send('Error searching Discogs database');
   });
 });
 
@@ -65,7 +65,7 @@ router.post('/details', requiresAuth(), (req, res) => {
   })
   .catch(function(error) {
     console.log(error);
-    res.send('Error searching Discogs 2');
+    res.send('Error getting Discogs release details');
   });
 });
 
@@ -92,42 +92,29 @@ router.post('/save', requiresAuth(), (req, res) => {
       }
     }
   })
-  // .then(function(response) {
-  //   // Connects an inventory item to a location by creating an inventory level at that location.
-  //   return axios({
-  //     method:'post',
-  //     url: 'https://recordcoasters.myshopify.com/admin/api/2023-07/inventory_levels/connect.json',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_API_ACCESS_TOKEN 
-  //     },
-  //     data: {
-  //       location_id: process.env.SHOPIFY_LOCATION_ID,
-  //       inventory_item_id: response.data.product.variants[0].inventory_item_id,
-  //     }
-  //   })
-  // })
-  // .then(function(response) {
-  //   // Sets the inventory level for an inventory item at a location
-    // return axios({
-    //   method:'post',
-    //   url: 'https://recordcoasters.myshopify.com/admin/api/2023-07/inventory_levels/set.json',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_API_ACCESS_TOKEN 
-    //   },
-    //   data: {
-    //     location_id: process.env.SHOPIFY_LOCATION_ID,
-    //     inventory_item_id: response.data.product.variants[0].inventory_item_id,
-    //     available : 1
-    //   }
-    // })
-  // })
+  .then(function(response) {
+    // update inventory item to 'tracked' = true
+    const inventoryItemId = response.data.product.variants[0].inventory_item_id;
+
+    return axios({
+      method:'put',
+      url: `https://recordcoasters.myshopify.com/admin/api/2023-07/inventory_items/${inventoryItemId}.json`,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_API_ACCESS_TOKEN 
+      },
+      data: {
+        inventory_item: {
+          tracked: true
+        }
+      }
+    });
+  })
   .then(function(response) {
     res.redirect('home');
   })
   .catch(function(error) {
-    console.log(error);
+    console.log('error saving to Shopify:', error);
     res.send('Error saving to Shopify');
   });
 });
