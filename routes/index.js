@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const { requiresAuth } = require('express-openid-connect');
 const axios = require('axios');
-const { log } = require('console');
 
 // if authenticated, go to home page with search bar, else go to landing page
 router.get('/', function(req, res, next) {
@@ -13,7 +12,7 @@ router.get('/', function(req, res, next) {
 
 // go to home page with search bar
 router.get('/home', requiresAuth(), (req, res) => {
-  res.render('home');
+  res.render('home', {message: req.flash('success')});
 });
 
 // search discogs and display results
@@ -111,6 +110,7 @@ router.post('/save', requiresAuth(), (req, res) => {
     });
   })
   .then(function(response) {
+    req.flash('success', `"${req.body.title}" successfully saved to Shopify.`);
     res.redirect('home');
   })
   .catch(function(error) {

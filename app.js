@@ -6,6 +6,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const session = require('express-session');
+const flash = require('connect-flash');
+
 const { auth } = require('express-openid-connect');
 
 const config = {
@@ -31,6 +34,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(auth(config));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  saveUninitialized: false,
+  resave: false,
+  cookie: {maxAge: 60000}
+}));
+app.use(flash());
 
 app.use('/', indexRouter);
 
