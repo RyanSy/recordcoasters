@@ -14,12 +14,15 @@
 </nav>
 
 <div class="container-fluid w-50 vh-100">
-    {{#if message}}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{message}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div style="height: 66px;">
+        {{#if message}}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="position: absolute;">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{/if}}
     </div>
-    {{/if}}
+
     <form class="form-inline" action="/search-results" method="post">
         <input type="text" class="form-control mt-5 mb-2" id="searchBox" aria-describedby="emailHelp"
             placeholder="Enter search term" name="searchTerm">

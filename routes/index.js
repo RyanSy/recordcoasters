@@ -73,7 +73,7 @@ router.post('/save', requiresAuth(), (req, res) => {
   // create product
   axios({
     method:'post',
-    url: 'https://recordcoasters.myshopify.com/admin/api/2023-07/products.json',
+    url: `https://${process.env.SHOPIFY_STORE_NAME}.myshopify.com/admin/api/2023-07/products.json`,
     headers: {
       'Content-Type': 'application/json',
       'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_API_ACCESS_TOKEN 
@@ -97,7 +97,7 @@ router.post('/save', requiresAuth(), (req, res) => {
 
     return axios({
       method:'put',
-      url: `https://recordcoasters.myshopify.com/admin/api/2023-07/inventory_items/${inventoryItemId}.json`,
+      url: `https://${process.env.SHOPIFY_STORE_NAME}.myshopify.com/admin/api/2023-07/inventory_items/${inventoryItemId}.json`,
       headers: {
         'Content-Type': 'application/json',
         'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_API_ACCESS_TOKEN 
