@@ -5,8 +5,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const helmet = require('helmet');
-const compression = require('compression');
+// const helmet = require('helmet');
+// const compression = require('compression');
 
 const session = require('express-session');
 const flash = require('connect-flash');
@@ -43,15 +43,15 @@ app.use(session({
   cookie: {maxAge: 60000}
 }));
 app.use(flash());
-app.use(helmet( {
-  contentSecurityPolicy: {
-    useDefaults: true,
-    directives: {
-      'script-src': ["'self'", 'https://recordcoasters-staging-be6193363201.herokuapp.com', 'https://recordcoasters-871a1fd5416c.herokuapp.com/']
-    }
-  }
-}));
-app.use(compression());
+// app.use(helmet( {
+//   contentSecurityPolicy: {
+//     useDefaults: true,
+//     directives: {
+//       'script-src': ["'self'", 'https://recordcoasters-staging-be6193363201.herokuapp.com', 'https://recordcoasters-871a1fd5416c.herokuapp.com/']
+//     }
+//   }
+// }));
+// app.use(compression());
 
 app.use('/', indexRouter);
 
