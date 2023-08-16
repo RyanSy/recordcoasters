@@ -81,6 +81,7 @@ router.post('/save', requiresAuth(), (req, res) => {
     data: {
       product: {
         title: req.body.title,
+        body_html: req.body.body_html,
         images: [{
           src: req.body.image
         }],
