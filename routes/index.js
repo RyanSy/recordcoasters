@@ -58,8 +58,9 @@ router.post('/details', requiresAuth(), (req, res) => {
     const result = response.data;
     const resultObj = {
       result: result,
-      title: req.body.title
-    }
+      artist: result.artists[0].name,
+      title: result.title
+    };
     res.render('details', resultObj);
   })
   .catch(function(error) {

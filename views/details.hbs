@@ -1,15 +1,15 @@
-<div class="container mb-5">
+<div class="container mt-5 mb-5">
     <form action="/save" method="post">
         {{#each this.result.images}}
-        <div class="input-group">
-            <input class="mr-2" type="radio" name="image" value="{{this.resource_url}}" required>
-            <img class="ml-2 mb-3" src="{{this.resource_url}}" alt="{{this.artists_sort}} {{this.title}}" height="150" width="150">
+        <div class="input-group mb-3">
+            <input type="radio" name="image" value="{{this.resource_url}}" required>
+            <img src="{{this.resource_url}}" alt="{{this.artists_sort}} {{this.title}}" height="150" width="150">
         </div>
         {{/each}}
 
         <label for="">Item</label>
         <div class="input-group form-outline w-50">
-            <input type="text" class="form-control mb-3" name="title" value="{{this.title}} Groovy Coaster" required>
+            <input type="text" class="form-control mb-3" name="title" value="{{this.artist}} Groovy Coaster - {{this.title}}" required>
         </div>
 
         <label for="">Quantity</label>
@@ -22,12 +22,12 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
             </div>
-            <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required>
+            <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required>
         </div>
 
         <label for="">Description</label>
         <div class="input-group mb-3 form-outline w-50">
-            <textarea name="body_html" class="form-control" cols="30" rows="10">All Groovy Coasters are made from REAL vinyl records! We've waterproofed the label and have attached cork to the back. Our products are proudly made and assembled in the USA. Groovy Coasters come with an unconditional 100% satisfaction guarantee!</textarea>
+            <textarea name="body_html" class="form-control" cols="30" rows="10"><strong>Groovy Coasters are made from REAL vinyl records! We've waterproofed the label and have attached cork to the back. Our products are proudly made and assembled in the USA. Groovy Coasters come with an unconditional 100% satisfaction guarantee!</strong></textarea>
         </div>
 
         <input type="submit" class="btn btn-success" value="Save to Shopify">
