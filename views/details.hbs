@@ -1,5 +1,6 @@
 <div class="container mt-5 mb-5">
     <form action="/save" method="post">
+        <label for="Image">Image (choose one):</label>
         {{#each this.result.images}}
         <div class="input-group mb-3">
             <input type="radio" name="image" value="{{this.resource_url}}" required>
@@ -7,27 +8,110 @@
         </div>
         {{/each}}
 
-        <label for="">Item</label>
+        <label for="Item">Item:</label>
         <div class="input-group form-outline w-50">
-            <input type="text" class="form-control mb-3" name="title" value="{{this.artist}} Groovy Coaster - {{this.title}}" required>
+            <input type="text" class="form-control mb-3" name="title"
+                value="{{this.artist}} Groovy Coaster - {{this.title}}" required>
         </div>
 
-        <label for="">Quantity</label>
+        <label for="Quantity">Quantity:</label>
         <div class="input-group mb-3 form-outline w-25">
             <input class="form-control" type="number" name="quantity" value="1" required>
         </div>
 
-        <label for="">Price</label>
+        <label for="Price">Price:</label>
         <div class="input-group mb-3 form-outline w-25">
             <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
             </div>
-            <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required>
+            <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)"
+                name="price" required>
         </div>
 
-        <label for="">Description</label>
+        <label for="Description">Description:</label>
         <div class="input-group mb-3 form-outline w-50">
-            <textarea name="body_html" class="form-control" cols="30" rows="10"><strong>Groovy Coasters are made from REAL vinyl records! We've waterproofed the label and have attached cork to the back. Our products are proudly made and assembled in the USA. Groovy Coasters come with an unconditional 100% satisfaction guarantee!</strong></textarea>
+            <textarea name="body_html" class="form-control" cols="30"
+                rows="10"><strong>Groovy Coasters are made from REAL vinyl records! We've waterproofed the label and have attached cork to the back. Our products are proudly made and assembled in the USA.<br><br>Please note that coasters could vary slightly from photo due to label variations and normal wear. Remember that they are made from used vinyl from actual record collections. Groovy Coasters come with an unconditional 100% satisfaction guarantee!</strong></textarea>
+        </div>
+
+        <label for="Tags">Tags:</label>
+        <div class="mb-3">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Alternative Rock">
+                <label class="form-check-label">Alternative Rock</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Broadway">
+                <label class="form-check-label">Broadway</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Classic Rock">
+                <label class="form-check-label" for="">Classic Rock</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Current R&B">
+                <label class="form-check-label">Current R&B</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Disco">
+                <label class="form-check-label">Disco</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Eighties">
+                <label class="form-check-label">Eighties</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Hard Rock">
+                <label class="form-check-label">Hard Rock</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Hip Hop">
+                <label class="form-check-label">Hip Hop</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Jazz">
+                <label class="form-check-label">Jazz</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Latin">
+                <label class="form-check-label">Latin</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Oddities">
+                <label class="form-check-label">Oddities</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Oldies">
+                <label class="form-check-label">Oldies</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Pop Vocals">
+                <label class="form-check-label">Pop Vocals</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Punk/New Wave">
+                <label class="form-check-label">Punk/New Wave</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Reggae/World">
+                <label class="form-check-label">Reggae/World</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Soundtracks">
+                <label class="form-check-label">Soundtracks</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Soul">
+                <label class="form-check-label">Soul</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Spoken Word">
+                <label class="form-check-label">Spoken Word</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Premium Coasters">
+                <label class="form-check-label">Premium Coasters</label>
+            </div>
         </div>
 
         <input type="submit" class="btn btn-success" value="Save to Shopify">
