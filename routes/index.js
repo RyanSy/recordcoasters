@@ -71,8 +71,12 @@ router.post('/details', requiresAuth(), (req, res) => {
 
 // save to shopify
 router.post('/save', requiresAuth(), (req, res) => {
-  const tags = req.body.tags.join();
-  console.log(tags);
+  let tags = req.body.tags;
+  if (typeof(tags) === 'object') {
+    tags = tags.join();
+    console.log(tags);
+  }
+
   // create product
   axios({
     method:'post',
