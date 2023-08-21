@@ -35,7 +35,7 @@ router.post('/search-results', requiresAuth(), (req, res) => {
     res.render('search-results', { results: results} );
   })
   .catch(function(error) {
-    console.log(error);
+    console.log('Error searching Discogs database:', error);
     res.send('Error searching Discogs database');
   });
 });
@@ -64,7 +64,7 @@ router.post('/details', requiresAuth(), (req, res) => {
     res.render('details', resultObj);
   })
   .catch(function(error) {
-    console.log(error);
+    console.log('Error getting Discogs release details:', error);
     res.send('Error getting Discogs release details');
   });
 });
@@ -74,7 +74,6 @@ router.post('/save', requiresAuth(), (req, res) => {
   let tags = req.body.tags;
   if (typeof(tags) === 'object') {
     tags = tags.join();
-    console.log(tags);
   }
 
   // create product
@@ -123,7 +122,7 @@ router.post('/save', requiresAuth(), (req, res) => {
     res.redirect('home');
   })
   .catch(function(error) {
-    console.log('error saving to Shopify:', error);
+    console.log('Error saving to Shopify:', error);
     res.send('Error saving to Shopify');
   });
 });
