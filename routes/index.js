@@ -71,7 +71,8 @@ router.post('/details', requiresAuth(), (req, res) => {
 
 // save to shopify
 router.post('/save', requiresAuth(), (req, res) => {
-  let tags = req.body.tags;
+  const productData = req.body;
+  let tags = productData.tags;
   if (typeof(tags) === 'object') {
     tags = tags.join();
   }
@@ -86,14 +87,15 @@ router.post('/save', requiresAuth(), (req, res) => {
     },
     data: {
       product: {
-        title: req.body.title,
-        body_html: req.body.body_html,
+        title: productData.title,
+        body_html: productData.body_html,
         images: [{
-          src: req.body.image
+          src: productData.image
         }],
         variants: [{
-          price: req.body.price,
-          inventory_quantity: req.body.quantity
+          price: productData.price,
+          inventory_quantity: productData.quantity,
+          sku: productData.sku
         }],
         tags: tags
       }

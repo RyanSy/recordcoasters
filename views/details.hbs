@@ -14,6 +14,11 @@
                 value="{{this.artist}} Groovy Coaster - {{this.title}}" required>
         </div>
 
+        <label for="Sku">Sku:</label>
+        <div class="input-group form-outline w-50">
+            <input type="text" class="form-control mb-3" name="sku" required>
+        </div>
+
         <label for="Quantity">Quantity:</label>
         <div class="input-group mb-3 form-outline w-25">
             <input class="form-control" type="number" name="quantity" value="1" required>
@@ -30,8 +35,27 @@
 
         <label for="Description">Description:</label>
         <div class="input-group mb-3 form-outline w-50">
-            <textarea name="body_html" class="form-control" cols="30"
-                rows="10"><strong>Groovy Coasters are made from REAL vinyl records! We've waterproofed the label and have attached cork to the back. Our products are proudly made and assembled in the USA.<br><br>Please note that coasters could vary slightly from photo due to label variations and normal wear. Remember that they are made from used vinyl from actual record collections. Groovy Coasters come with an unconditional 100% satisfaction guarantee!</strong></textarea>
+            <textarea name="body_html" class="form-control" cols="30" rows="10">
+                <strong>
+                    <ul>
+                        <li>
+                            ALL Groovy Coasters are made from REAL vinyl records! 
+                        </li>
+                        <li>
+                            The label has been waterproofed and we've attached cork to the back.
+                        </li>
+                        <li>
+                            Our products are proudly sourced, made and assembled in the USA!
+                        </li>
+                        <li>
+                            Please note that coasters could vary slightly from photo due to label variations and normal wear. Remember that we repurpose used records.
+                        </li>
+                        <li>
+                            Groovy Coasters come with an unconditional 100% satisfaction guarantee!
+                        </li>
+                    </ul>
+                </strong>
+            </textarea>
         </div>
 
         <label for="Genre Tags">Genre Tags:</label>
@@ -67,6 +91,10 @@
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="tags" value="Hard Rock">
                 <label class="form-check-label">Hard Rock</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Heavy Metal">
+                <label class="form-check-label">Heavy Metal</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="tags" value="Hip Hop">
