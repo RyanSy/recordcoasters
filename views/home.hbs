@@ -23,9 +23,26 @@
         {{/if}}
     </div>
 
-    <form class="form-inline" action="/search-results" method="post">
-        <input type="text" class="form-control mt-5 mb-2" id="searchBox" aria-describedby="emailHelp"
-            placeholder="Enter search term" name="searchTerm">
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-coasters-tab" data-bs-toggle="tab" data-bs-target="#nav-coasters"
+                type="button" role="tab" aria-controls="nav-coasters" aria-selected="true">Coasters</button>
+            <button class="nav-link" id="nav-frames-tab" data-bs-toggle="tab" data-bs-target="#nav-frames" type="button"
+                role="tab" aria-controls="nav-profile" aria-selected="false">LP Frames</button>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane show active" id="nav-coasters" role="tabpanel" aria-labelledby="nav-coasters-tab">
+            <form class="form-inline" action="/search-coasters" method="post">
+                <input type="text" class="form-control mt-5 mb-2" id="searchBox" placeholder="Search for coasters" name="searchTerm" required> 
+                <button type="submit" class="btn btn-primary">Search Coasters</button>
+            </form>
+        </div>
+        <div class="tab-pane" id="nav-frames" role="tabpanel" aria-labelledby="nav-frames-tab">
+            <form class="form-inline" action="/search-frames" method="post">
+                <input type="text" class="form-control mt-5 mb-2" id="searchBox" placeholder="Search for frames" name="searchTerm" required>
+                <button type="submit" class="btn btn-primary">Search Frames</button>
+            </form>
+        </div>
+    </div>
 </div>
