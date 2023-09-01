@@ -105,7 +105,7 @@ router.post('/search-frames', async function (req, res) {
   // use hcti.io API to create LP cover image within a black frame
   async function createFrame() {
     const payload = {
-      html: `<div style="height: 100px; width: 100px; border: 10px solid #000000;"><img style="height: 100px; width: 100px;" src="${cover_image}" alt="${title}"></div>`
+      html: `<div style="height: 250px; width: 250px; border: 10px solid #000000;"><img class="img-fluid" style="height: 250px; width: 250px;" src="${cover_image}" alt="${title}"></div>`
     };
 
     const headers = {
