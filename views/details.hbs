@@ -14,8 +14,7 @@
 
         <label for="Item">Item:</label>
         <div class="input-group form-outline w-50">
-            <input type="text" class="form-control mb-3" name="title"
-                value="{{this.artist}} Groovy Coaster - {{this.title}}" required>
+            <input type="text" class="form-control mb-3" name="title" value="{{this.artist}} Groovy Coaster - {{this.title}}" required>
         </div>
 
         <label for="Sku">Sku:</label>
@@ -33,29 +32,23 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
             </div>
-            <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)"
-                name="price" required>
+            <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required>
         </div>
 
         <label for="Description">Description:</label>
         <div class="input-group mb-3 form-outline w-50">
-            <textarea id="itemDescription" name="body_html" class="form-control" cols="30"
-                rows="10"><strong><ul><li>ALL Groovy Coasters are made from REAL vinyl records!</li><li>The label has been waterproofed and we've attached cork to the back.</li><li>Our products are proudly sourced, made and assembled in the USA!</li><li>Please note that coasters could vary slightly from photo due to label variations and normal wear. Remember that we repurpose used records.</li><li>Groovy Coasters come with an unconditional 100% satisfaction guarantee!</li></ul></strong></textarea>
-            <div class="form-text">Hint: in the text area above, each "< li>blah blah blah< /li>" represents a bullet
-                        point. To add another, just type in whatever you want between a new set of < li> tags, and don't
-                            worry about any red squiggly lines about spelling errors under the HTML Tags.</div>
+            <textarea id="itemDescription" name="body_html" class="form-control" cols="30" rows="10"><strong><ul><li>ALL Groovy Coasters are made from REAL vinyl records!</li><li>The label has been waterproofed and we've attached cork to the back.</li><li>Our products are proudly sourced, made and assembled in the USA!</li><li>Please note that coasters could vary slightly from photo due to label variations and normal wear. Remember that we repurpose used records.</li><li>Groovy Coasters come with an unconditional 100% satisfaction guarantee!</li></ul></strong></textarea>
+            <div class="form-text">Hint: in the text area above, each "< li>blah blah blah< /li>" represents a bullet point. To add another, just type in whatever you want between a new set of < li> tags, and don't worry about any red squiggly lines about spelling errors under the HTML Tags.</div>
         </div>
 
         <label for="Coaster Type Tags">Coaster Type Tags (required):</label>
         <div class="mb-3">
             <div class="form-check form-check-inline">
-                <input id="inputForLPCoasters" class="form-check-input" type="radio" onclick="changeDescription()"
-                    name="tags" value="LP Coasters" checked>
+                <input id="inputForLPCoasters" class="form-check-input" type="radio" onclick="changeDescription()" name="tags" value="LP Coasters" checked>
                 <label class="form-check-label">LP Coasters</label>
             </div>
             <div class="form-check form-check-inline">
-                <input id="inputFor45Coasters" class="form-check-input" type="radio" onclick="changeDescription()"
-                    name="tags" value="45 Coasters">
+                <input id="inputFor45Coasters" class="form-check-input" type="radio" onclick="changeDescription()" name="tags" value="45 Coasters">
                 <label class="form-check-label">45 Coasters</label>
             </div>
         </div>
@@ -175,6 +168,10 @@
                 <label class="form-check-label">Reggae/World</label>
             </div>
             <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Soft Rock">
+                <label class="form-check-label">Soft Rock</label>
+            </div>
+            <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="tags" value="Soundtracks">
                 <label class="form-check-label">Soundtracks</label>
             </div>
@@ -217,8 +214,7 @@
 
         <label for="Item">Item:</label>
         <div class="input-group form-outline w-50">
-            <input type="text" class="form-control mb-3" name="title" value="{{this.title}} Groovy Framed Album Cover"
-                required>
+            <input type="text" class="form-control mb-3" name="title" value="{{this.artist}} Groovy Framed Album Cover - {{this.title}}" required>
         </div>
 
         <label for="Sku">Sku:</label>
@@ -236,24 +232,12 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">$</span>
             </div>
-            <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)"
-                name="price" required>
+            <input type="number" step=".01" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" required>
         </div>
 
         <label for="Description">Description:</label>
         <div class="input-group mb-3 form-outline w-50">
-            <textarea id="itemDescription" name="body_html" class="form-control" cols="30" rows="10">
-                <strong>
-                    <ul>
-                        <li>ALL Groovy framed album covers are ORIGINALS !</li>
-                        <li>Groovy framed albums are encased in a stylish metal frame with glass to protect the cover.</li>
-                        <li>Unless otherwise stated, there is NO RECORD inside of the cover.</li>
-                        <li>Please note that album cover could vary slightly from photo due to minor variations and normal wear. Remember that we repurpose USED album covers.</li>
-                        <li>Our products are proudly sourced, made and assembled in the USA!</li>
-                        <li>Groovy framed record albums come with an unconditional 100% satisfaction guarantee!</li>
-                    </ul>
-                </strong>
-            </textarea>
+            <textarea id="itemDescription" name="body_html" class="form-control" cols="30" rows="10"><strong><ul><li>ALL Groovy framed album covers are ORIGINALS !</li><li>Groovy framed albums are encased in a stylish metal frame with glass to protect the cover.</li><li>Unless otherwise stated, there is NO RECORD inside of the cover.</li><li>Please note that album cover could vary slightly from photo due to minor variations and normal wear. Remember that we repurpose USED album covers.</li><li>Our products are proudly sourced, made and assembled in the USA!</li><li>Groovy framed record albums come with an unconditional 100% satisfaction guarantee!</li></ul></strong></textarea>
         </div>
 
         <input type="hidden" name="tags" value="Framed Album Covers">
@@ -373,6 +357,10 @@
                 <label class="form-check-label">Reggae/World</label>
             </div>
             <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="tags" value="Soft Rock">
+                <label class="form-check-label">Soft Rock</label>
+            </div>
+            <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="tags" value="Soundtracks">
                 <label class="form-check-label">Soundtracks</label>
             </div>
@@ -386,7 +374,7 @@
             </div>
         </div>
 
-        <label for="Coaster Type Tags">Miscellaneous Tags:</label>
+        <label for="Miscellaneous Tags">Miscellaneous Tags:</label>
         <div class="mb-5">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" name="tags" value="Beautiful Design">

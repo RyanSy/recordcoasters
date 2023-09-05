@@ -89,9 +89,11 @@ router.post('/search-frames', async function (req, res) {
     .then(function(response) {
       const cover_image = response.data.results[0].cover_image;
       const title = response.data.results[0].title;
+      const resource_url = response.data.results[0].resource_url;
       return {
         cover_image: cover_image,
-        title: title
+        title: title,
+        resource_url: resource_url
       }
     })
     .catch(function(error) {
@@ -100,7 +102,32 @@ router.post('/search-frames', async function (req, res) {
     });
   
   const cover_image = imageData.cover_image;
-  const title = imageData.title;
+  const resource_url = imageData.resource_url;
+  
+  //get request to resource url for artist and title info
+  const albumData = await axios({
+    method: 'get',
+    url: resource_url,
+    headers: { 'User-Agent': 'RecordCoasters/1.0' },
+    params: {
+      country: 'US',
+      type: 'all',
+      format: 'vinyl',
+      key: process.env.DISCOGS_CONSUMER_KEY,
+      secret: process.env.DISCOGS_CONSUMER_SECRET
+    }
+  })
+  .then(function(response) {
+    console.log(response.data);
+    return response.data
+  })
+  .catch(function(error) {
+    console.log(error);
+    res.send('error in get request to resource url on discogs');
+  });
+
+  const artist = albumData.artists[0].name;
+  const title = albumData.title;
 
   // use hcti.io API to create LP cover image within a black frame
   async function createFrame() {
@@ -133,13 +160,13 @@ router.post('/search-frames', async function (req, res) {
     })
   
   const resultObj = {
+    artist: artist,
     title: title,
     image: image,
     isCoaster: false,
   };
 
   res.render('details', resultObj);
-
 });
 
 // save to shopify
